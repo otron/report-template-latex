@@ -1,0 +1,15 @@
+OUTPUTNAME = report
+
+.PHONY: all
+all:
+	pdflatex -jobname $(OUTPUTNAME) head.tex > /dev/null
+	pdflatex -jobname $(OUTPUTNAME) head.tex > /dev/null
+	open $(OUTPUTNAME).pdf
+
+.PHONY: clean
+clean:
+	rm *.aux *.toc *.log *.ind *.ilg
+
+.PHONY: err
+err:
+	pdflatex -jobname $(OUTPUTNAME) head.tex
