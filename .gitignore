@@ -1,0 +1,15 @@
+# LaTeX things
+*.aux
+*.log
+*.pdf
+*.out
+*.toc
+*.ind
+*.ilg
+
+# Vim
+*.sw[op]
+
+# OSX
+.DS_STORE
+
