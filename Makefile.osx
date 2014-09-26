@@ -8,7 +8,7 @@ all:
 
 .PHONY: clean
 clean:
-	rm *.aux *.toc *.log *.ind *.ilg
+	rm *.aux *.toc *.log *.ind *.ilg *.out
 
 .PHONY: err
 err:
