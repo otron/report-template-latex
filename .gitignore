@@ -6,6 +6,8 @@
 *.toc
 *.ind
 *.ilg
+tmp.markdown
+tmp.tex
 
 # Vim
 *.sw[op]

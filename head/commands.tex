@@ -5,3 +5,9 @@
 \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}} % changes the subsection labeling to %SECTION%.%NUMBER%
 \renewcommand\thesubsubsection{\roman{subsubsection})} % changes the subsubsection numbering to %ROMAN%)
 \renewcommand\thesection{Part \arabic{section}} % changes the section numbering to Part %NUMBER%
+
+\newenvironment{markdown}
+    {\VerbatimEnvironment\begin{VerbatimOut}{tmp.markdown}}
+    {\end{VerbatimOut}
+        \immediate\write18{pandoc tmp.markdown -t latex -o tmp.tex}
+    \input{tmp.tex}}
