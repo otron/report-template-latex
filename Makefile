@@ -12,6 +12,8 @@ endif
 all:
 	pdflatex $(FLAGS) $(FILE) > /dev/null
 	pdflatex $(FLAGS) $(FILE) > /dev/null
+	bibtex $(OUTPUTNAME) > /dev/null
+	pdflatex $(FLAGS) $(FILE) > /dev/null
 	$(OPEN) $(OUTPUTNAME).pdf
 
 .PHONY: clean
