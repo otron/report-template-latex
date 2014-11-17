@@ -1,0 +1,39 @@
+\begin{markdown}
+
+## Optimizations ##
+A lot of the same optimizations techniques employed and CPU applies to
+the GPU environment as well. In this paper we will look at two
+techniques that are targeted more towards GPUs but as we will see have
+some effect on CPUs aswell. 
+
+### Memory Access Optimizations ###
+Paper \cite{mem-acc} discusses the importance of optimizing the memory access
+pattern of the kernels executed on a GPU. The pattern by it self can
+provide a speedup of 30x compared to a naive but functionaly
+equivalent patten. The paper introduces two techniques, Grouping
+memory access and Coaleced data transfer. 
+
+#### Grouping Memory Access ####
+A lot of hardware offers vector operations. As the with of these
+vectors are predicted to grow in the next years the parallelism
+exploitable by SIMD is also growing. When accessing memory of a large
+set of data SIMD can be used by grouping the access in vector
+accesses. This can both be done by coarsening threads or by grouping
+accesses within one thread. 
+
+#### Coaleced Data Transfer ####
+GPU, especially those made by NVIDIA, resembles vector processors. The
+abstraction presented to the programmers are threads executed in
+warps. The joint access pattern of these warps has a big inpact on
+performance. By making these patterns sequential based on the thread
+ids, the access will be coaleced by the hardware implementing the load
+instructions. 
+
+### Thread-Coarsening ###
+Paper \cite{thd-coa} evaluates the effect of thread-coarsening on different
+architectures. It shows that this technique can lead to a speedup of
+1.15x to 1.38x on average, based on the architecture of the
+hardware. They also present a model for predicting the benfit and
+a basis for determening the effect on the different parameters.
+
+\end{markdown}

@@ -1,0 +1,83 @@
+\begin{markdown}
+
+# Introduction #
+
+Ever since GPGPU programming was introduced with Close to the metal,
+CUDA and OpenCL in the periode 2006-2009, the programming models have
+been evolving to enable more programmer productivity. 
+In this survey paper we will look at a few techniques on different
+levels that aim to increase programmer productivitiy while maintaining
+the performance of handtuned code. The papers are selected based on a
+range of papers presented in the course TDT24 Parallel Environments
+and Numerical Computing 2014. 
+
+The abstraction levels we look at are, the programming model,
+autotuning, compiler optimizations, performance portable compilers, and
+the hardware level.
+
+Some of the papers discussed looks at CPU implementations rather than
+GPU, they are included to highlight the fields mentioned in the previous
+paragraph.
+
+## Programming Model ##
+
+A programming model is the abstraction presented to the programmer.
+Both OpenCL and CUDA, the two dominant frameworks for GPGPU, provides
+a low level model of the computing hardware. They expose a array of
+processor units that execute code in SIMT in groups of up to 32
+units. This model is effective for problems with large regular data
+structures, like matrix operations, where the data parallelism is
+_flat_. The model presented in \cite{data-para} builds on _nested_
+data parallelism proposed by \cite{bs90}. This model enables
+applications to exploit data parallelism in sparse and irregular
+problems.
+
+## Autotuning ##
+
+Autotuning is the technique to adapt the solution to the hardware the
+application is running on. This can be done at runtime, online, or
+at compile time, offline. There are a lot of solutions to paralell
+applications that have equivalent output but are highly variable in
+performance. This fact is closely related to hardware architecture and
+can vary largely even over architecture generations. A method for autotuneing
+Sparse Matrix-Vector multiplication is discussed in \cite{auto}.
+
+## Compiler Optimizations ##
+
+Compiler optimizations are a important factor of providing a higher
+level interface to GPGPU computing. The compiler will have to peal
+away the abstractions to regain the performance of the
+algorithm. Sometimes optimizations also make better choises than
+the programmer, and restructureing the application cat provide better
+performance. In this segment compilier optimizations and autotuning
+might resemble each others. Papers \cite{thd-coa} and \cite{mem-acc}
+explores different optimizations for kernels running on a GPU.  
+
+## Performance Portablilty ##
+
+Although OpenCL has proven to be a protable format for defining
+paralell exectution over a range of architectures, the performance has
+not been portable. We look at pocl \cite{pocl} which presents a kernel
+compiler with portable performance.
+
+## Hardware platform ##
+
+The traditional GPGPU platforms have their source in Graphics
+Processing Units. By having a completelty separate architecture and
+instruction set these are hard to approach from a programmers
+perspective when one is used to the CPU abstractions. The Intel Xeon
+Phi \cite{phi} is a new type of coprocessor that aims to keep the
+performance of a GPU while being closer to a CPU in the abstraction layer.
+
+
+
+
+\end{markdown}
+
+
+%- A Large-Scale Cross-Architecture Evaluation of Thread-Coarsening \cite{thd-coa}
+%- Compile-time GPU Memory Access Optimizations \cite{mem-acc}
+%- pocl: A Performance-Portable OpenCL Implementation \cite{pocl}
+%- Autotuning Sparse Matrix-Vector Multiplication for Multicore \cite{auto}
+%- Harnessing the Multicores: Nested Data Parallelism in Haskell \cite{data-para}
+%- Offload Compiler Runtime for the Intel Coprocessor \cite{phi}

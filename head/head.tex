@@ -1,0 +1,27 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt,a4paper]{article}
+%\setcounter{secnumdepth}{3}
+
+\input{head/packages.tex}
+\input{head/commands.tex}
+\input{head/variables.tex}
+
+\input{head/titlepage.tex}
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+%\tableofcontents* % the asterisk means that the contents itself isn't put into the ToC
+\begin{multicols}{2}
+
+\input{body/body.tex}
+
+\bibliography{body/bibliography}{}
+\bibliographystyle{plain}
+
+\end{multicols}
+
+\end{document}

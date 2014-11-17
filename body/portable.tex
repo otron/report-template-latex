@@ -1,0 +1,17 @@
+\begin{markdown}
+
+## Performance Portablility ##
+
+OpenCL \cite{opencl} was introduced in 2009 as an effort to make
+programs portable between different hetrogeneous platforms. OpenCL is
+a uniform interface to these platforms but the performance not proven
+be portable \cite{komatsu2010evaluating}. Paper \cite{pocl} presents a
+performance portable kernel compiler and a reference
+implementation. The compiler is build with two layers, a host layer
+that identifies parallel regions and a device layer that maps the
+regions to the device hardware for execution. The compiler has proven
+to be comparable in performance with the currently best
+implementations on Intel Core i7, ARM Cortex A9 andSTI CellBE.
+As of the time of writing no support for commercial GPUs exists.
+
+\end{markdown}
