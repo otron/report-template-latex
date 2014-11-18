@@ -16,7 +16,7 @@ all:
 
 .PHONY: clean
 clean:
-	rm *.aux *.toc *.log *.ind *.ilg *.pyg
+	rm *.aux *.toc *.log *.ind *.ilg *.pyg *.out
 
 .PHONY: err
 err:
