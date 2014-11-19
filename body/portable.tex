@@ -14,4 +14,12 @@ to be comparable in performance with the currently best
 implementations on Intel Core i7, ARM Cortex A9 andSTI CellBE.
 As of the time of writing no support for commercial GPUs exists.
 
+### Parallel regions ###
+
+The kernel compiler is implemented as a series of LLVM compiler
+passes. They extract regions in the code that can be parallelized
+without taking the underlying hardware in consideration. The compiler
+then leaves it up to the device layer to map the parallel regions to
+the parallel components of the hardware. 
+
 \end{markdown}
