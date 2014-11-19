@@ -1,39 +1,68 @@
 \begin{markdown}
 
 ## Optimizations ##
+
 A lot of the same optimizations techniques employed and CPU applies to
 the GPU environment as well. In this paper we will look at two
 techniques that are targeted more towards GPUs but as we will see have
 some effect on CPUs aswell. 
 
 ### Memory Access Optimizations ###
-Paper \cite{mem-acc} discusses the importance of optimizing the memory access
-pattern of the kernels executed on a GPU. The pattern by it self can
-provide a speedup of 30x compared to a naive but functionaly
+
+Paper \cite{mem-acc} discusses the importance of optimizing the memory
+access pattern of the kernels executed on a GPU. The pattern by it
+self can provide a speedup of 30x compared to a naive but functionaly
 equivalent patten. The paper introduces two techniques, Grouping
-memory access and Coaleced data transfer. 
+memory access and Coaleced data transfer.
 
 #### Grouping Memory Access ####
-A lot of hardware offers vector operations. As the with of these
+
+A lot of hardware offers vector operations. As the width of these
 vectors are predicted to grow in the next years the parallelism
-exploitable by SIMD is also growing. When accessing memory of a large
-set of data SIMD can be used by grouping the access in vector
-accesses. This can both be done by coarsening threads or by grouping
-accesses within one thread. 
+exploitable by SIMD is also growing \cite{Hennessy}. When accessing
+memory of a large set of data SIMD can be used by grouping the access
+in vector accesses. This can both be done by coarsening threads or by
+grouping accesses within one thread.
 
 #### Coaleced Data Transfer ####
+
 GPU, especially those made by NVIDIA, resembles vector processors. The
 abstraction presented to the programmers are threads executed in
 warps. The joint access pattern of these warps has a big inpact on
 performance. By making these patterns sequential based on the thread
 ids, the access will be coaleced by the hardware implementing the load
-instructions. 
+instructions.
 
 ### Thread-Coarsening ###
-Paper \cite{thd-coa} evaluates the effect of thread-coarsening on different
-architectures. It shows that this technique can lead to a speedup of
-1.15x to 1.38x on average, based on the architecture of the
-hardware. They also present a model for predicting the benfit and
-a basis for determening the effect on the different parameters.
+
+Paper \cite{thd-coa} evaluates the effect of thread-coarsening on
+different architectures. Thread-coarsening is the technique of
+combining the work of two or more threads into one thread.
+
+#### Implementation level ####
+
+For the implementation the authors have choosen to employ the
+transformation on LLVM IR\cite{LLVM}. This makes the framework
+reusable even for application not intended for GPGPU
+architectures. This is examplfied by the fact that their evaluations
+contains both CPUs and GPUs.
+
+### Predicting speedup ###
+
+\cite{thd-coa} also presents a model for predicting the benefits of
+thread-coarsening. Their model is general and automated so it can be
+applied to other scenarios aswell. They build a regression three from
+performance counters observed when execution kernels on different
+architectures while varying the parameters. The regression tree
+idenifies key performance metrics and threshold values one must adhert
+to when choosing the parameter values. They also use this model to
+explain why performance is not portable over architectures. Futhermore
+this model can be a basis for autotuning optimizations. 
 
 \end{markdown}
+
+
+%It shows that this technique can lead to a
+%speedup of 1.15x to 1.38x on average, based on the architecture of the
+%hardware. They also present a model for predicting the benfit and a
+%basis for determening the effect on the different parameters.
