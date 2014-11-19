@@ -5,14 +5,60 @@
 As mentioned in the introduction the autotuning technique involves
 tuning the solution to the architecture it is executed on at
 runtime. This can be divided into two categories, _online_ and
-_offline_. Online tuning changes the program based on runtime
-information such as problem size and performance counters. Some
-computations can be to expensive to performe at runtime, these include
-doing an exhaustive search over a number of parameters to find the
-most performant once. This can be done offline once per architecture
-to build a database that can be queried at runtime.
+_offline_ tuning. Online tuning changes the program based on
+runtime information such as problem size and performance counters
+while the program is running. Some computations can be to expensive to
+performe at runtime, these include doing an exhaustive search over a
+number of parameters to find the most performant once. This can be
+done offline once per architecture to build a database that can be
+queried at runtime.
 
-### Sparce Matrix-Vector Multiplication ###
+### Sparse Matrix-Vector Multiplication in pOSKI ###
+
+In \cite{auto} the Sparse Matrix-Vector Multiplication problem is
+autotuned for a few key CPU architectures. SpMV is the problem of
+multiplying a sparse matrix, meaning most of the elements of are zero,
+with a vector. This suggests that you can get a performance increase
+by representing the matrix with a different layout than the
+conventional $m*x$ matrix. The implementation described in the paper
+is based on OSKI \cite{oski} (Optimized Sparse Kernel Interface). OSKI
+is a library of autotuning kernels for SpMV amongst other problems.
+In \cite{auto} the authors extend OSKI to exploit parallelism and
+presents pOSKI. The extention includes SIMD intrisics and software
+prefetching and pipelining in the offline phase, array padding and
+awareness of NUMA (Non Uniform Memory Access) in the online
+phase. They also parallelize the online process to reduce the overhead
+of the method at runtime.
+
+### Optimizations  ###
+
+The Optimizations, shown in Table \ref{tab:poksi}, used in the library can be divided into three
+groups. Choice of representation, in-core optimizations, and
+Thread-level Parallelism.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}[H]{|l|l|}
+    \hline
+    Group      & Optimizations\\
+    \hline
+    \hline
+    DataStruct & CSR\\
+    & BCSR\\
+    \hline
+    In-Core& SW Pipeline\\
+    & SW Prefetching\\
+    & SIMD intrisicts\\
+    & Loop unrolling\\
+    & Register blocking\\
+    \hline
+    TLP&Thread blocking by row\\
+    &NUMA-aware mapping\\
+    \hline
+  \end{tabular}
+  \label{tab:poksi}
+  \caption{pOSKI optimizations}
+\end{table}
 
 
 \end{markdown}
