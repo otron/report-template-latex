@@ -11,19 +11,48 @@ the performance of handtuned code. The papers are selected based on a
 range of papers presented in the course TDT24 Parallel Environments
 and Numerical Computing 2014. 
 
-The abstraction levels we look at are, the programming model,
-autotuning, compiler optimizations, performance portable compilers, and
-the hardware level.
+The abstraction levels we look at are illustrated in Figure
+\ref{fig:abstraction}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|}
+    \hline
+    Programming Model \\
+    \hline \hline
+    Autotuning \\
+    \hline \hline
+    Compiler Optimizations \\
+    \hline \hline
+    Performance Portability \\
+    \hline \hline
+    Hardware Implementation \\
+    \hline
+  \end{tabular}
+  \label{fig:abstraction}
+  \caption{Abstraction levels}
+\end{figure}
+
+As the figure suggests they can be considered in an hierarchical
+order. With the abstractions going from close to the programmer on the
+top to close to the actual hardware on the bottom. 
 
 Some of the papers discussed looks at CPU implementations rather than
 GPU, they are included to highlight the fields mentioned in the previous
 paragraph.
 
+This section presents the problems and points to solutions for each of
+the abstraction levels in Figure \ref{fig:abstraction}. Section
+\ref{sec:implementation} looks at the implementation presented in the
+selection of papers. Section \ref{sec:result} and \ref{sec:conclusion}
+presents results and conclusion from the work presented in the
+implementation section. 
+
 ## Programming Model ##
 
 A programming model is the abstraction presented to the programmer.
 Both OpenCL and CUDA, the two dominant frameworks for GPGPU, provides
-a low level model of the computing hardware. They expose a array of
+a low level model of the computing hardware. They expose an array of
 processor units that execute code in SIMT in groups of up to 32
 units. This model is effective for problems with large regular data
 structures, like matrix operations, where the data parallelism is
@@ -35,40 +64,40 @@ problems.
 ## Autotuning ##
 
 Autotuning is the technique to adapt the solution to the hardware the
-application is running on. This can be done at runtime, online, or
-at compile time, offline. There are a lot of solutions to paralell
-applications that have equivalent output but are highly variable in
+application is running on. This can be done at runtime, _online_, or
+at compile time, _offline_. There are a lot of solutions to parallel
+problems that have equivalent output but are highly variable in
 performance. This fact is closely related to hardware architecture and
-can vary largely even over architecture generations. A method for autotuneing
-Sparse Matrix-Vector multiplication is discussed in \cite{auto}.
+can vary largely even over architecture generations. A method for
+autotuneing Sparse Matrix-Vector multiplication is discussed in
+\cite{auto}.
 
 ## Compiler Optimizations ##
 
-Compiler optimizations are a important factor of providing a higher
+Compiler optimizations are am important factor of providing a higher
 level interface to GPGPU computing. The compiler will have to peal
 away the abstractions to regain the performance of the
-algorithm. Sometimes optimizations also make better choises than
-the programmer, and restructureing the application cat provide better
-performance. In this segment compilier optimizations and autotuning
+algorithm. Sometimes optimizations also make better choices than
+the programmer, and restructureing the application can provide better
+performance. In this segment compiler optimizations and autotuning
 might resemble each others. Papers \cite{thd-coa} and \cite{mem-acc}
 explores different optimizations for kernels running on a GPU.  
 
 ## Performance Portablilty ##
 
 Although OpenCL has proven to be a protable format for defining
-paralell exectution over a range of architectures, the performance has
+parallel exectution over a range of architectures, the performance has
 not been portable. We look at pocl \cite{pocl} which presents a kernel
 compiler with portable performance.
 
 ## Hardware platform ##
 
 The traditional GPGPU platforms have their source in Graphics
-Processing Units. By having a completelty separate architecture and
+Processing Units. By having a completely separate architecture and
 instruction set these are hard to approach from a programmers
 perspective when one is used to the CPU abstractions. The Intel Xeon
 Phi \cite{phi} is a new type of coprocessor that aims to keep the
 performance of a GPU while being closer to a CPU in the abstraction layer.
-
 
 
 
