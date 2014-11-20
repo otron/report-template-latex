@@ -1,0 +1,53 @@
+\begin{markdown}
+
+## Offloading Compiler Runtime ##
+
+In a hetrogeneous system the choice of where to execute the code is of
+great importance. This choice is application and architecture
+specific. An offloading compiler runtime alleviate this burden from
+the programmer. The method described in \cite{phi} introduces a
+programming model and a code generating runtime component to deal with
+this complexity. The distinction between GPU such as those by NVIDIA
+and AMD and the Intel Xeon Phi coprocessor is that the Phi shares the
+instruction set as conventional CPUs. This enables a application to be
+gradiutaly extended to exploit the coprocessor instead of full
+rewrites as is the case for GPUs. 
+
+### Programming model ###
+
+The paper describes a proposed extension to OpenMP \cite{openmp} on
+the Intel C compiler. The extension consists of __language pragmas__,
+__language keywords__, and __library calls__. Meaning that programmers
+can offload code by adding pragmas as $pragma offload$ or calling into
+library routines that offload the code on behalf of the programmer. 
+
+## Runtime Component ##
+
+The runtime has a few phases namely __initialization__ and
+__invocation__.
+
+First the decision about wether the code can be offloaded is
+evaluated. If the section is found to be a candidate for offloading
+the input parameters to the code must be marshalled and transferred to
+the coprocessor. Then the code for the Phi is transfered and a process
+on the device is created.
+
+In the invocation phase a similar model to OpenCL with a FIFO command
+queue is the basis. The process on the coprocessor is responsible for
+executing the offloaded code section.
+
+In the clean up phase a compiler-generated wrapper function copies the
+data back to the host processor and demarshalls the results from the
+offloaded computations. The demarshalling happens on the coprocessor.
+
+### Note on performance ###
+
+DMA transfers is available between the host and coprocessor memory
+given that a few conditions on memory alignment is held.
+
+As the stackframes on the coprocessor are destroyed between each
+executed section on the coprocessor, data shareing from one executiong
+to the next should be done on the heap or with global variables to
+ensure high performance. 
+
+\end{markdown}

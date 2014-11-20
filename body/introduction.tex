@@ -24,9 +24,9 @@ The abstraction levels we look at are illustrated in Figure
     \hline \hline
     Compiler Optimizations \\
     \hline \hline
-    Performance Portability \\
+    Offloading Compiler Runtime \\
     \hline \hline
-    Hardware Implementation \\
+    Performance Portability \\
     \hline
   \end{tabular}
   \caption{Abstraction levels}
@@ -72,6 +72,7 @@ can vary largely even over architecture generations. A method for
 autotuneing Sparse Matrix-Vector multiplication is discussed in
 \cite{auto}.
 
+
 ## Compiler Optimizations ##
 
 Compiler optimizations are am important factor of providing a higher
@@ -83,21 +84,21 @@ performance. In this segment compiler optimizations and autotuning
 might resemble each others. Papers \cite{thd-coa} and \cite{mem-acc}
 explores different optimizations for kernels running on a GPU.  
 
+## Offloading Compiler Runtime ##
+
+Offloading is the process of delagating work from the CPU over to a
+coprocessor. When this is done in the compiler runtime this process is
+more or less transparent to the programmer. An example of this is the
+offloading compiler runtime for Intel Xeon Phi described in
+\cite{phi}. The system integrates some of the other levels described
+in this survey.
+
 ## Performance Portablilty ##
 
 Although OpenCL has proven to be a protable format for defining
 parallel exectution over a range of architectures, the performance has
 not been portable. We look at pocl \cite{pocl} which presents a kernel
 compiler with portable performance.
-
-## Hardware platform ##
-
-The traditional GPGPU platforms have their source in Graphics
-Processing Units. By having a completely separate architecture and
-instruction set these are hard to approach from a programmers
-perspective when one is used to the CPU abstractions. The Intel Xeon
-Phi \cite{phi} is a new type of coprocessor that aims to keep the
-performance of a GPU while being closer to a CPU in the abstraction layer.
 
 
 
