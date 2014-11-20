@@ -3,13 +3,13 @@
 # Introduction #
 
 Ever since GPGPU programming was introduced with Close to the metal,
-CUDA and OpenCL in the periode 2006-2009, the programming models have
-been evolving to enable more programmer productivity. 
-In this survey paper we will look at a few techniques on different
-levels that aim to increase programmer productivitiy while maintaining
-the performance of handtuned code. The papers are selected based on a
-range of papers presented in the course TDT24 Parallel Environments
-and Numerical Computing 2014. 
+CUDA\cite{CUDA} and OpenCL\cite{opencl} in the periode 2006-2009, the
+programming models have been evolving to enable more programmer
+productivity.  In this survey paper we will look at a few techniques
+on different levels that aim to increase programmer productivitiy
+while maintaining the performance of handtuned code. The papers are
+selected based on a range of papers presented in the course TDT24
+Parallel Environments and Numerical Computing 2014.
 
 The abstraction levels we look at are illustrated in Figure
 \ref{fig:abstraction}.
@@ -29,8 +29,8 @@ The abstraction levels we look at are illustrated in Figure
     Hardware Implementation \\
     \hline
   \end{tabular}
-  \label{fig:abstraction}
   \caption{Abstraction levels}
+  \label{fig:abstraction}
 \end{figure}
 
 As the figure suggests they can be considered in an hierarchical
@@ -57,7 +57,7 @@ processor units that execute code in SIMT in groups of up to 32
 units. This model is effective for problems with large regular data
 structures, like matrix operations, where the data parallelism is
 _flat_. The model presented in \cite{data-para} builds on _nested_
-data parallelism proposed by \cite{bs90}. This model enables
+data parallelism proposed by \cite{nesl}. This model enables
 applications to exploit data parallelism in sparse and irregular
 problems.
 
