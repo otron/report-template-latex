@@ -13,6 +13,25 @@ Wait why am I explaining myself to myself? I should know this stuff.
 Aw yiss you know that's some good stuff.
 There's a `markdown` environment here that you can write markdown inside and then when you compile the document _it turns into LaTeX_.
 
+# Compatability
+
+* Linux: Yes.
+* OS X: At least on Mavericks.
+* Windows: Sure, if you can figure out how to compile it.
+
+# Usage
+
+You should probably remove the stuff you don't need or want to use.
+I'm just adding things as I realize I need it in ongoing projects.
+
+## Compiling
+
+Run `make` from the root folder to compile it.
+By default it does a quiet run.
+If it doesn't work, run `make err` to do a non-quiet run.
+
+`make clean` removes produced temporary files.
+
 
 # Requirements
 
