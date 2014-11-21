@@ -3,6 +3,7 @@ FLAGS = --shell-escape -jobname $(OUTPUTNAME)
 FILE = head/head.tex
 OPEN=rifle
 PLATFORM=$(shell uname)
+LIX=lix
 
 ifeq ($(PLATFORM),Darwin)
 include Makefile.osx
@@ -15,6 +16,12 @@ all:
 	bibtex $(OUTPUTNAME) > /dev/null
 	pdflatex $(FLAGS) $(FILE) > /dev/null
 	$(OPEN) $(OUTPUTNAME).pdf
+
+.PHONY: lix
+lix:
+	@pdftotext $(OUTPUTNAME).pdf
+	@cat $(OUTPUTNAME).txt | lix
+	@rm $(OUTPUTNAME).txt
 
 .PHONY: clean
 clean:
