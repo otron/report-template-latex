@@ -1,6 +1,8 @@
 OUTPUTNAME = report
-FLAGS = --shell-escape -jobname $(OUTPUTNAME)
+FLAGS = --shell-escape $(JOB) -pdf
+JOB = --jobname=$(OUTPUTNAME)
 FILE = head/head.tex
+
 OPEN=rifle
 PLATFORM=$(shell uname)
 
@@ -10,14 +12,14 @@ endif
 
 .PHONY: all
 all:
-	pdflatex $(FLAGS) $(FILE) > /dev/null
-	pdflatex $(FLAGS) $(FILE) > /dev/null
+	latexmk -quiet $(FLAGS) $(FILE)
 	$(OPEN) $(OUTPUTNAME).pdf
 
 .PHONY: clean
 clean:
-	rm *.aux *.toc *.log *.ind *.ilg *.pyg *.out
+	latexmk -quiet -c $(JOB) $(FILE)
+	rm tmp.markdown tmp.tex *.run.xml *.pyg *.bbl
 
 .PHONY: err
 err:
-	pdflatex $(FLAGS) $(FILE)
+	latexmk $(FLAGS) $(FILE)

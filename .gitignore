@@ -9,6 +9,9 @@
 *.ilg
 tmp.markdown
 tmp.tex
+*.dvi
+*.fls
+*.fdb_latexmk
 
 # Vim
 *.sw[op]
