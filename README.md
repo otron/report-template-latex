@@ -13,7 +13,7 @@ Wait why am I explaining myself to myself? I should know this stuff.
 Aw yiss you know that's some good stuff.
 There's a `markdown` environment here that you can write markdown inside and then when you compile the document _it turns into LaTeX_.
 
-# Compatability
+# Compatibility
 
 * Linux: Yes.
 * OS X: At least on Mavericks.
