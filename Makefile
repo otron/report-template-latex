@@ -18,7 +18,7 @@ all:
 .PHONY: clean
 clean:
 	latexmk -quiet -c $(JOB) $(FILE)
-	rm tmp.markdown tmp.tex *.run.xml *.pyg *.bbl
+	rm tmp.markdown tmp.tex *.pyg *.run.xml *.bbl
 
 .PHONY: err
 err:

@@ -13,6 +13,13 @@ tmp.tex
 *.fls
 *.fdb_latexmk
 
+# bibtex
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+
 # Vim
 *.sw[op]
 
