@@ -1,0 +1,48 @@
+\begin{markdown}
+
+
+# Results #
+\label{sec:results}
+  
+This section gives a brief overview over the performance of the
+systems described in this paper. 
+
+## Autotuning SpMV ##
+
+The pOSKI \cite{auto} achieves a speedup of 3.7x to 8.6x over OSKI
+depending on the architecture. A comparable range is seen over a
+OpenMP implemententation and it is 3.2x faster than Intel
+MKL\cite{mkl}. Although on some matrices the performance is higher on
+Intel MKL and OpenMP.
+
+## Thread-Coarsing ##
+
+On average the thread-coarsening optimization leads to a speedup of
+1.15x to 1.38 on average depending on the architecture.
+
+## Memory Access ##
+
+The memory access optimizations presented in \cite{mem-acc} ranges
+from 2x to 43x and amounts to the same speedup as given by hand
+optimized code, given the same constraints the optimization is under.
+
+## Data Parallel Haskell ##
+
+The DPH paper does not contain any results, the ones presented here
+are extracted from the slides found on \cite{dph-slides}. For
+Barnes-Hut DPH provides a speedup of ~2.4x for 4 processors. 
+
+## Offload Compiler ##
+
+Intel offloading compiler provides speedups in the range 1.3x to 6.9x
+for a selection of proprietary customer examples.
+
+## Performance Portable ##
+
+The pocl OpenCL compiler shows promising results with the average
+results on ARM Cortex-A9, Intel i7 and Cell PowerPC equal or better
+than the current best platform specific implementation.
+
+
+\end{markdown}
+
