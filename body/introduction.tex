@@ -44,7 +44,7 @@ paragraph.
 This section presents the problems and points to solutions for each of
 the abstraction levels in Figure \ref{fig:abstraction}. Section
 \ref{sec:implementation} looks at the implementation presented in the
-selection of papers. Section \ref{sec:result} and \ref{sec:conclusion}
+selection of papers. Section \ref{sec:results} and \ref{sec:conclusion}
 presents results and conclusion from the work presented in the
 implementation section. 
 
@@ -56,7 +56,7 @@ a low level model of the computing hardware. They expose an array of
 processor units that execute code in SIMT in groups of up to 32
 units. This model is effective for problems with large regular data
 structures, like matrix operations, where the data parallelism is
-_flat_. The model presented in \cite{data-para} builds on _nested_
+_flat_. The model presented in \cite{DPH} builds on _nested_
 data parallelism proposed by \cite{nesl}. This model enables
 applications to exploit data parallelism in sparse and irregular
 problems.
@@ -69,7 +69,7 @@ at compile time, _offline_. There are a lot of solutions to parallel
 problems that have equivalent output but are highly variable in
 performance. This fact is closely related to hardware architecture and
 can vary largely even over architecture generations. A method for
-autotuneing Sparse Matrix-Vector multiplication is discussed in
+autotuning Sparse Matrix-Vector multiplication is discussed in
 \cite{auto}.
 
 
